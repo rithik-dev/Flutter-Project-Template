@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_template/screens/home_screen.dart';
+import 'package:project_template/widgets/custom_loader.dart';
 
 class SplashScreen extends StatefulWidget {
   static const id = 'SplashScreen';
@@ -24,14 +25,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Text(
-            'SplashScreen',
-            style: Theme.of(context).textTheme.headline3,
-          ),
-        ),
+        body: CustomLoader(),
       ),
     );
   }
