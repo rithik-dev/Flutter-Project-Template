@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_template/l10n/l10n.dart';
 
 class HomeScreen extends StatelessWidget {
   static const id = 'HomeScreen';
@@ -13,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: Text(
-            'HomeScreen',
+            L10n.of(context).language,
             style: Theme.of(context).textTheme.headline3,
           ),
         ),
