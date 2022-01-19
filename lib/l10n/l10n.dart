@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:project_template/utils/globals.dart';
 
 class L10n {
   const L10n._();
@@ -15,6 +16,6 @@ class L10n {
   static List<LocalizationsDelegate> get localizationsDelegates =>
       AppLocalizations.localizationsDelegates;
 
-  static AppLocalizations of(BuildContext context) =>
-      AppLocalizations.of(context)!;
+  static AppLocalizations get dictionary =>
+      AppLocalizations.of(Globals.currentContext)!;
 }

@@ -9,16 +9,7 @@ class AppTheme {
 
   static const _elevation = 1.5;
 
-  static const _defaultFont = 'Poppins';
-
-  static const bodyTextStyle = TextStyle(
-    fontWeight: FontWeight.w600,
-    color: Colors.black,
-    fontFamily: _defaultFont,
-    fontSize: 14,
-  );
-
-  static const dialogInsetPadding = EdgeInsets.fromLTRB(10, 100, 10, 100);
+  static const _defaultFont = '';
 
   static ThemeData _baseTheme(Brightness brightness) {
     return ThemeData(
@@ -58,6 +49,12 @@ class AppTheme {
           borderRadius: BorderRadius.circular(25),
         ),
         behavior: SnackBarBehavior.floating,
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.android: ZoomPageTransitionsBuilder(),
+          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+        },
       ),
     );
   }

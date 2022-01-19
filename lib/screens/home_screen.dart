@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: Text(
-            L10n.of(context).language,
+            L10n.dictionary.language,
             style: Theme.of(context).textTheme.headline3,
           ),
         ),

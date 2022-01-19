@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
-import 'package:project_template/utils/app_theme.dart';
 
 class Helpers {
   const Helpers._();
@@ -11,13 +10,7 @@ class Helpers {
     Duration duration = const Duration(seconds: 2),
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          text,
-          style: AppTheme.bodyTextStyle.copyWith(color: Colors.white),
-        ),
-        duration: duration,
-      ),
+      SnackBar(content: Text(text), duration: duration),
     );
   }
 
