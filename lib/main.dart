@@ -4,6 +4,7 @@ import 'package:project_template/controllers/locale_controller.dart';
 import 'package:project_template/l10n/l10n.dart';
 import 'package:project_template/screens/splash_screen.dart';
 import 'package:project_template/utils/app_theme.dart';
+import 'package:project_template/utils/globals.dart';
 import 'package:project_template/utils/route_generator.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,7 @@ class _MainApp extends StatelessWidget {
           locale: _localeCon.locale,
           supportedLocales: L10n.all,
           localizationsDelegates: L10n.localizationsDelegates,
+          navigatorKey: Globals.navigatorKey,
           onGenerateRoute: RouteGenerator.generateRoute,
           initialRoute: SplashScreen.id,
         );
