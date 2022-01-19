@@ -5,18 +5,16 @@ class L10n {
   const L10n._();
 
   static const all = [
-    /// English
+    // English
     Locale('en'),
 
-    /// Hindi
+    // Hindi
     Locale('hi'),
   ];
 
-  static LocalizationsDelegate get delegate => AppLocalizations.delegate;
+  static List<LocalizationsDelegate> get localizationsDelegates =>
+      AppLocalizations.localizationsDelegates;
 
   static AppLocalizations of(BuildContext context) =>
       AppLocalizations.of(context)!;
-
-// static Locale currentLocale(BuildContext context) =>
-//     Localizations.localeOf(context);
 }
