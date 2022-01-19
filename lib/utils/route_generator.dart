@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:project_template/screens/home_screen.dart';
 import 'package:project_template/screens/splash_screen.dart';
+import 'package:project_template/utils/helpers.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-    debugPrint("PUSHED ${settings.name}(${args ?? ''})");
+    Helpers.log("PUSHED ${settings.name}(${args ?? ''})");
     switch (settings.name) {
       case SplashScreen.id:
         return _route(const SplashScreen());
