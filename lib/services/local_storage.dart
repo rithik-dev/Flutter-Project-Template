@@ -19,7 +19,12 @@ class LocalStorage {
       if (_val is bool) _prefs.setBool(key, value);
       if (_val is double) _prefs.setDouble(key, value);
       if (_val is int) _prefs.setInt(key, value);
-      if (_val is List<String>) _prefs.setStringList(key, value);
+      if (_val is List) {
+        _prefs.setStringList(
+          key,
+          (value as List).map((e) => e.toString()).cast<String>().toList(),
+        );
+      }
     }
   }
 

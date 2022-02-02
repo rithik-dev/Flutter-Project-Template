@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'dart:developer' as devtools show log;
+
 import 'package:flutter/material.dart';
 
 class Helpers {
@@ -28,7 +29,5 @@ class Helpers {
   static bool isNullOrBlank(String? data) =>
       data == null || data.trim().isEmpty;
 
-  static void log(dynamic data) {
-    if (kDebugMode) debugPrint(data.toString());
-  }
+  static void log(dynamic data) => devtools.log(data.toString());
 }
