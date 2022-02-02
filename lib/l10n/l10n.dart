@@ -17,5 +17,5 @@ class L10n {
       AppLocalizations.localizationsDelegates;
 
   static AppLocalizations get dictionary =>
-      AppLocalizations.of(Globals.currentContext)!;
+      AppLocalizations.of(Globals.context)!;
 }

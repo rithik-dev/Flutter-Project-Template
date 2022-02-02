@@ -26,8 +26,7 @@ class Helpers {
     return textPainter.size;
   }
 
-  static bool isNullOrBlank(String? data) =>
-      data == null || data.trim().isEmpty;
+  static bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 
   static void log(dynamic data) => devtools.log(data.toString());
 }

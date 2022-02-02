@@ -5,7 +5,7 @@ import 'package:project_template/utils/helpers.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+    final args = settings.arguments as dynamic;
     Helpers.log("PUSHED ${settings.name}(${args ?? ''})");
     switch (settings.name) {
       case SplashScreen.id:

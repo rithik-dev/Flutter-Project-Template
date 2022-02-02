@@ -9,5 +9,5 @@ class Globals {
 
   static final navigatorKey = GlobalKey<NavigatorState>();
 
-  static BuildContext get currentContext => navigatorKey.currentContext!;
+  static BuildContext get context => navigatorKey.currentContext!;
 }
