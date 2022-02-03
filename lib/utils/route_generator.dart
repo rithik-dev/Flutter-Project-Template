@@ -6,7 +6,7 @@ import 'package:project_template/utils/helpers.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments as dynamic;
-    Helpers.log("PUSHED ${settings.name}(${args ?? ''})");
+    log("Pushed ${settings.name}(${args ?? ''})");
     switch (settings.name) {
       case SplashScreen.id:
         return _route(const SplashScreen());
@@ -21,17 +21,12 @@ class RouteGenerator {
       MaterialPageRoute(builder: (context) => widget);
 
   static Route<dynamic> _errorRoute(String? name) {
-    return MaterialPageRoute(builder: (_) {
-      return SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text('Error'),
-          ),
-          body: Center(
-            child: Text('ROUTE \n\n$name\n\nNOT FOUND'),
-          ),
+    return MaterialPageRoute(
+      builder: (_) => Scaffold(
+        body: Center(
+          child: Text('ROUTE \n\n$name\n\nNOT FOUND'),
         ),
-      );
-    });
+      ),
+    );
   }
 }
