@@ -37,24 +37,19 @@ class _MainApp extends StatelessWidget {
           create: (_) => ThemeController(),
         ),
       ],
-      builder: (context, _) {
-        final _localeCon = LocaleController.of(context);
-        final _themeCon = ThemeController.of(context);
-
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          scrollBehavior: _ScrollBehavior(),
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          locale: _localeCon.locale,
-          themeMode: _themeCon.themeMode,
-          supportedLocales: L10n.all,
-          localizationsDelegates: L10n.localizationsDelegates,
-          navigatorKey: Globals.navigatorKey,
-          onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute: SplashScreen.id,
-        );
-      },
+      builder: (context, _) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        scrollBehavior: _ScrollBehavior(),
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        locale: LocaleController.of(context).locale,
+        themeMode: ThemeController.of(context).themeMode,
+        supportedLocales: L10n.all,
+        localizationsDelegates: L10n.localizationsDelegates,
+        navigatorKey: Globals.navigatorKey,
+        onGenerateRoute: RouteGenerator.generateRoute,
+        initialRoute: SplashScreen.id,
+      ),
     );
   }
 }
