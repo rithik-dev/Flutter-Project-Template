@@ -14,7 +14,18 @@ void showSnackBar(
 
 bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 
-void log(dynamic data) => devtools.log(data.toString());
+void log(
+  String screenId, {
+  dynamic msg,
+  dynamic error,
+  StackTrace? stackTrace,
+}) =>
+    devtools.log(
+      msg.toString(),
+      error: error,
+      name: screenId,
+      stackTrace: stackTrace,
+    );
 
 // Size getParagraphSize(
 //   String? text, {

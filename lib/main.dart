@@ -22,7 +22,7 @@ void main() async {
 
 class _ScrollBehavior extends ScrollBehavior {
   @override
-  Widget buildViewportChrome(_, child, ___) => child;
+  Widget buildViewportChrome(_, child, __) => child;
 }
 
 class _MainApp extends StatelessWidget {

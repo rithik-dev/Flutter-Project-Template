@@ -4,9 +4,11 @@ import 'package:project_template/screens/splash_screen.dart';
 import 'package:project_template/utils/helpers.dart';
 
 class RouteGenerator {
+  static const _id = 'RouteGenerator';
+
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments as dynamic;
-    log("Pushed ${settings.name}(${args ?? ''})");
+    log(_id, msg: "Pushed ${settings.name}(${args ?? ''})");
     switch (settings.name) {
       case SplashScreen.id:
         return _route(const SplashScreen());

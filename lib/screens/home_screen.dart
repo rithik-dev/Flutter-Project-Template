@@ -1,3 +1,4 @@
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:project_template/l10n/l10n.dart';
 
@@ -12,10 +13,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Text(
-            L10n.dictionary.language,
-            style: Theme.of(context).textTheme.headline3,
+        body: DoubleBackToCloseApp(
+          snackBar: const SnackBar(
+            content: Text('Tap the back button again to exit the app!'),
+          ),
+          child: Center(
+            child: Text(
+              L10n.dictionary.language,
+              style: Theme.of(context).textTheme.headline3,
+            ),
           ),
         ),
       ),

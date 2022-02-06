@@ -46,7 +46,7 @@ class AppTheme {
         backgroundColor: _kAccentColor,
         elevation: _elevation,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
+          borderRadius: BorderRadius.circular(20),
         ),
         behavior: SnackBarBehavior.floating,
       ),
