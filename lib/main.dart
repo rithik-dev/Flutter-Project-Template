@@ -21,6 +21,8 @@ void main() async {
 }
 
 class _ScrollBehavior extends ScrollBehavior {
+  const _ScrollBehavior() : super();
+
   @override
   Widget buildViewportChrome(_, child, __) => child;
 }
@@ -39,7 +41,7 @@ class _MainApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        scrollBehavior: _ScrollBehavior(),
+        scrollBehavior: const _ScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         locale: LocaleController.of(context).locale,
