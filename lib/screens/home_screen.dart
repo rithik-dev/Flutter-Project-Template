@@ -14,8 +14,8 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: DoubleBackToCloseApp(
-          snackBar: const SnackBar(
-            content: Text('Tap the back button again to exit the app!'),
+          snackBar: SnackBar(
+            content: Text(L10n.dictionary.tapBackButtonAgainToExit),
           ),
           child: Center(
             child: Text(

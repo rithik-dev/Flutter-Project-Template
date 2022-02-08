@@ -3,33 +3,38 @@ import 'package:flutter/material.dart';
 class AppTheme {
   const AppTheme._();
 
-  static const _kAccentColor = Color(0xFFFF717F);
-  static const kCyanColor = Color(0xFF05F0FF);
-  static const kTealColor = Color(0xFF5DC9BC);
+  // static const _elevation = 1.5;
 
-  static const _elevation = 1.5;
+  static const defaultFont = 'ProductSans';
 
-  static const _defaultFont = 'ProductSans';
-
-  static ThemeData _baseTheme(Brightness brightness) {
+  static ThemeData _baseTheme(
+    Brightness brightness, {
+    Color? accentColor,
+    Color? cardColor,
+  }) {
     return ThemeData(
       brightness: brightness,
-      fontFamily: _defaultFont,
+      fontFamily: defaultFont,
     ).copyWith(
-      colorScheme: ColorScheme.fromSwatch().copyWith(
-        primary: _kAccentColor,
-        secondary: _kAccentColor,
+      cardColor: cardColor,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
-      toggleableActiveColor: _kAccentColor,
+      colorScheme: ColorScheme.fromSwatch().copyWith(
+        // primary: accentColor,
+        secondary: accentColor,
+      ),
+      toggleableActiveColor: accentColor,
       textSelectionTheme: TextSelectionThemeData(
-        cursorColor: _kAccentColor,
-        selectionColor: _kAccentColor.withOpacity(0.75),
-        selectionHandleColor: _kAccentColor.withOpacity(0.75),
+        cursorColor: accentColor,
+        selectionColor: accentColor?.withOpacity(0.75),
+        selectionHandleColor: accentColor?.withOpacity(0.75),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          primary: _kAccentColor,
-          shadowColor: _kAccentColor,
+          primary: accentColor,
+          shadowColor: accentColor,
         ),
       ),
       dialogTheme: DialogTheme(
@@ -37,18 +42,19 @@ class AppTheme {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        elevation: _elevation,
-        highlightElevation: _elevation,
-        backgroundColor: _kAccentColor,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        // elevation: _elevation,
+        // highlightElevation: _elevation,
+        backgroundColor: accentColor,
       ),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: _kAccentColor,
-        elevation: _elevation,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        behavior: SnackBarBehavior.floating,
+        backgroundColor: accentColor,
+        contentTextStyle: const TextStyle(fontSize: 16),
+        // elevation: _elevation,
+        // shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(20),
+        // ),
+        behavior: SnackBarBehavior.fixed,
       ),
       pageTransitionsTheme: const PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
@@ -59,6 +65,18 @@ class AppTheme {
     );
   }
 
-  static final lightTheme = _baseTheme(Brightness.light);
-  static final darkTheme = _baseTheme(Brightness.dark);
+  static final lightTheme = _baseTheme(
+    Brightness.light,
+    accentColor: const Color(0xFF0669F8),
+  ).copyWith(
+    scaffoldBackgroundColor: const Color(0xFFF8FAFE),
+    cardColor: const Color(0xFFFFFFFF),
+  );
+  static final darkTheme = _baseTheme(
+    Brightness.dark,
+    accentColor: const Color(0xFFEB05FF),
+  ).copyWith(
+    scaffoldBackgroundColor: const Color(0xFF344FA1),
+    cardColor: const Color(0xFF031956),
+  );
 }

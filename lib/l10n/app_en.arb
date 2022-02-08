@@ -11,5 +11,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "tapBackButtonAgainToExit": "Tap the back button again to exit the app!"
 }
