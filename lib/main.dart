@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
+import 'package:flutter/services.dart';
 import 'package:project_template/controllers/locale_controller.dart';
 import 'package:project_template/controllers/theme_controller.dart';
 import 'package:project_template/l10n/l10n.dart';
@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
