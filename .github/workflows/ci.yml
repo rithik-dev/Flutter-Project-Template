@@ -24,8 +24,8 @@ jobs:
           channel: 'stable'
       - name: Installing dependencies
         run: flutter pub get
-      #      - name: Running tests
-      #        run: flutter test
+      - name: Running tests
+        run: flutter test
       - name: Building Android Release
         run: flutter build apk --release --target-platform android-arm,android-arm64
       - name: Upload android release to the artifacts.
@@ -39,6 +39,6 @@ jobs:
         run: flutter build ios --release --no-codesign
       - name: Upload iOS release to the artifacts.
         uses: actions/upload-artifact@v2
-        with:
-          name: release-${{ github.event.repository.name }}
-          path: build/app/outputs/apk/release/app.apk
+#        with:
+#          name: release-${{ github.event.repository.name }}
+#          path: path/to/ios/release
