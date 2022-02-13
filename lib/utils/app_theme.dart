@@ -11,8 +11,8 @@ class AppTheme {
 
   static ThemeData _baseTheme(
     Brightness brightness, {
+    Color? textColor,
     Color? accentColor,
-    Color? onAccentColor,
     Color? scaffoldBackgroundColor,
   }) {
     late final ThemeData themeData;
@@ -29,19 +29,24 @@ class AppTheme {
     }
 
     return ThemeData(
-      useMaterial3: true,
       brightness: brightness,
       fontFamily: _defaultFontFamily,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       appBarTheme: themeData.appBarTheme.copyWith(
         elevation: _defaultElevation,
         backgroundColor: scaffoldBackgroundColor,
+        titleTextStyle: TextStyle(
+          color: textColor,
+          fontFamily: _defaultFontFamily,
+          fontWeight: FontWeight.w600,
+          fontSize: 20,
+        ),
       ),
       colorScheme: defaultColorScheme.copyWith(
         brightness: brightness,
         // primary: accentColor,
         secondary: accentColor,
-        onSecondary: onAccentColor,
+        onSecondary: textColor,
       ),
       toggleableActiveColor: accentColor,
       // textSelectionTheme: TextSelectionThemeData(
@@ -79,17 +84,17 @@ class AppTheme {
 
   static final lightTheme = _baseTheme(
     Brightness.light,
+    textColor: Colors.black,
     accentColor: const Color(0xFF0669F8),
-    onAccentColor: Colors.white,
-    scaffoldBackgroundColor: const Color(0xFFA3AACA),
+    scaffoldBackgroundColor: const Color(0xFFDCDFE2),
   ).copyWith(
     cardColor: const Color(0xFFFFFFFF),
   );
 
   static final darkTheme = _baseTheme(
     Brightness.dark,
+    textColor: Colors.white,
     accentColor: const Color(0xFFEB05FF),
-    onAccentColor: Colors.white,
     scaffoldBackgroundColor: const Color(0xFF344FA1),
   ).copyWith(
     cardColor: const Color(0xFF031956),
