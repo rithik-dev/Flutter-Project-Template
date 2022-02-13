@@ -47,7 +47,7 @@ class _MainApp extends StatelessWidget {
         darkTheme: AppTheme.darkTheme,
         locale: LocaleController.of(context).locale,
         themeMode: ThemeController.of(context).themeMode,
-        supportedLocales: L10n.all,
+        supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
         navigatorKey: Globals.navigatorKey,
         onGenerateRoute: RouteGenerator.generateRoute,

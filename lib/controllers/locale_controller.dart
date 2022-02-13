@@ -21,6 +21,9 @@ class LocaleController extends ChangeNotifier {
 
   Locale? get locale => _locale;
 
+  String get currentLanguageName =>
+      L10n.getLanguageName(_locale!.languageCode)!;
+
   void _initialize() {
     final currentLocale = LocalStorage.read(_sharedPrefsKey);
     _locale = _getLocaleFromString(currentLocale);
@@ -36,7 +39,7 @@ class LocaleController extends ChangeNotifier {
     final newLocale = Locale(locale);
 
     // Only update if present in list of supported locales.
-    if (!L10n.all.contains(newLocale)) return;
+    if (!L10n.supportedLocales.contains(newLocale)) return;
 
     _locale = newLocale;
     LocalStorage.write(_sharedPrefsKey, newLocale.languageCode);

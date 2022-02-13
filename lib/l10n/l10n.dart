@@ -7,13 +7,16 @@ import 'package:project_template/utils/globals.dart';
 class L10n {
   const L10n._();
 
-  static const all = [
-    // English
-    Locale('en'),
+  static const _languagesMap = <String, String>{
+    'en': 'English',
+    'hi': 'हिन्दी',
+  };
 
-    // Hindi
-    Locale('hi'),
-  ];
+  static String? getLanguageName(String localeName) =>
+      _languagesMap[localeName];
+
+  static Iterable<Locale> get supportedLocales =>
+      _languagesMap.keys.map((e) => Locale(e));
 
   static List<LocalizationsDelegate> get localizationsDelegates =>
       AppLocalizations.localizationsDelegates;

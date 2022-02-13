@@ -18,7 +18,7 @@ class LanguageListTile extends StatelessWidget {
         child: Icon(Icons.language),
       ),
       title: Text(L10n.dictionary.language),
-      subtitle: Text(L10n.dictionary.currentLanguage),
+      subtitle: Text(LocaleController.of(context).currentLanguageName),
       onTap: () => _showChangeLanguageDialog(context),
     );
   }
@@ -51,9 +51,9 @@ class _ChooseLanguageDialog extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline5,
               ),
             ),
-            ...L10n.all.map(
+            ...L10n.supportedLocales.map(
               (locale) => RadioListTile<Locale>(
-                title: Text(locale.languageCode),
+                title: Text(L10n.getLanguageName(locale.languageCode)!),
                 value: locale,
                 groupValue: localCon.locale,
                 onChanged: (v) => localCon.setLocaleString(v!.languageCode),

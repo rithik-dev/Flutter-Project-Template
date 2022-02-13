@@ -1,8 +1,4 @@
 {
-  "currentLanguage": "English",
-  "@currentLanguage": {
-    "description": "The current language!"
-  },
   "welcome": "Hello {name}",
   "@welcome": {
     "description": "Welcome message",
