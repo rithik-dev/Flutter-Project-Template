@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_template/services/local_storage.dart';
+import 'package:project_template/utils/helpers.dart';
 import 'package:provider/provider.dart';
 
 class ThemeController extends ChangeNotifier {
@@ -9,6 +10,9 @@ class ThemeController extends ChangeNotifier {
   }) =>
       Provider.of<ThemeController>(context, listen: listen);
 
+  static const _sharedPrefsKey = 'theme';
+  static const _fallbackThemeMode = ThemeMode.system;
+
   ThemeController() {
     _initialize();
   }
@@ -17,34 +21,32 @@ class ThemeController extends ChangeNotifier {
 
   ThemeMode? get themeMode => _themeMode;
 
-  ThemeMode _getThemeModeFromString(String themeString) {
-    try {
-      return ThemeMode.values.byName(themeString);
-    } catch (_) {
-      return ThemeMode.system;
-    }
-  }
-
   void _initialize() {
-    final currentTheme = LocalStorage.read('theme');
+    final currentTheme = LocalStorage.read(_sharedPrefsKey);
     _themeMode = _getThemeModeFromString(currentTheme);
     notifyListeners();
   }
 
-  void setTheme(String theme) {
+  String get currentThemeName => capitalize(_themeMode!.name);
+
+  ThemeMode _getThemeModeFromString(String? themeString) {
+    try {
+      return ThemeMode.values.byName(themeString!);
+    } catch (_) {
+      return _fallbackThemeMode;
+    }
+  }
+
+  void setThemeString(String theme) {
     final newThemeMode = _getThemeModeFromString(theme);
-    _setThemeMode(newThemeMode);
-  }
-
-  void _setThemeMode(ThemeMode newThemeMode) {
     _themeMode = newThemeMode;
-    LocalStorage.write('theme', newThemeMode.name);
+    LocalStorage.write(_sharedPrefsKey, newThemeMode.name);
     notifyListeners();
   }
 
-  void clear() {
-    _themeMode = null;
-    LocalStorage.remove('theme');
-    notifyListeners();
-  }
+// void clear() {
+//   _themeMode = null;
+//   LocalStorage.remove(_sharedPrefsKey);
+//   notifyListeners();
+// }
 }

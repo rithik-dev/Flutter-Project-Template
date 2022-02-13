@@ -1,6 +1,6 @@
 {
-  "language": "English",
-  "@language": {
+  "currentLanguage": "English",
+  "@currentLanguage": {
     "description": "The current language!"
   },
   "welcome": "Hello {name}",
@@ -12,5 +12,10 @@
       }
     }
   },
-  "tapBackButtonAgainToExit": "Tap the back button again to exit the app!"
+  "language": "Language",
+  "tapBackButtonAgainToExit": "Tap the back button again to exit the app!",
+  "ok": "OK",
+  "theme": "Theme",
+  "chooseTheme": "Choose Theme",
+  "chooseLanguage": "Choose Language"
 }

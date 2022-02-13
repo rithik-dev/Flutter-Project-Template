@@ -14,6 +14,9 @@ void showSnackBar(
 
 bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 
+String capitalize(String text) =>
+    '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
+
 void log(
   String screenId, {
   dynamic msg,
