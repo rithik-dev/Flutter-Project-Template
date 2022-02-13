@@ -10,9 +10,9 @@ on:
       - master
 
 jobs:
-  build_android:
-    name: Build Android Application
-    runs-on: ubuntu-latest
+  build_release:
+    name: Build Android and iOS Release
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
@@ -28,28 +28,17 @@ jobs:
       #        run: flutter test
       - name: Building Android Release
         run: flutter build apk --release --target-platform android-arm,android-arm64
-      - name: Upload generated file to the artifacts.
+      - name: Upload android release to the artifacts.
         uses: actions/upload-artifact@v2
         with:
-          name: release-android
+          name: release-${{ github.event.repository.name }}
           path: build/app/outputs/apk/release/app-release.apk
-
-  build_ios:
-    name: Build iOS Application
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-      - name: Installing dependencies
-        run: flutter pub get
-      #      - name: Running tests
-      #        run: flutter test
+      - name: Cleaning and re-installing dependencies
+        run: flutter clean && flutter pub get
       - name: Building iOS Release
         run: flutter build ios --release --no-codesign
-#      - name: Upload generated file to the artifacts.
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: release-ios
-#          path: build/app/outputs
+      - name: Upload iOS release to the artifacts.
+        uses: actions/upload-artifact@v2
+        with:
+          name: release-${{ github.event.repository.name }}
+          path: build/app/outputs/apk/release/app.apk
