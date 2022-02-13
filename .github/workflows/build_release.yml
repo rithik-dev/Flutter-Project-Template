@@ -22,6 +22,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
       - name: Installing dependencies
         run: flutter pub get
       - name: Running tests
@@ -48,12 +49,12 @@ jobs:
           name: release-${{ github.event.repository.name }}
           path: build/app/outputs/bundle/release/app-release.aab
 
-      - name: Cleaning and re-installing dependencies
-        run: flutter clean && flutter pub get
-
-      # BUILD IOS RELEASE
-      - name: Building iOS Release
-        run: flutter build ios --release --no-codesign
+#      - name: Cleaning and re-installing dependencies
+#        run: flutter clean && flutter pub get
+#
+#      # BUILD IOS RELEASE
+#      - name: Building iOS Release
+#        run: flutter build ios --release --no-codesign
 #      - name: Upload iOS release to the artifacts.
 #        uses: actions/upload-artifact@v2
 #        with:
