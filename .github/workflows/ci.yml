@@ -24,8 +24,8 @@ jobs:
           channel: 'stable'
       - name: Installing dependencies
         run: flutter pub get
-      - name: Running tests
-        run: flutter test
+#      - name: Running tests
+#        run: flutter test
       - name: Building Android Release
         run: flutter build apk --release --target-platform android-arm,android-arm64
       - name: Upload android release to the artifacts.
