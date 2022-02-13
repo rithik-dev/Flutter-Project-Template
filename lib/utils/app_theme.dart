@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class AppTheme {
   const AppTheme._();
 
-  static const _elevation = 2.5;
-  static const _defaultFont = 'ProductSans';
+  static const _defaultElevation = 2.5;
+  static const _defaultFontFamily = 'ProductSans';
+
+  static const _lightColorScheme = ColorScheme.light();
+  static const _darkColorScheme = ColorScheme.dark();
 
   static ThemeData _baseTheme(
     Brightness brightness, {
@@ -12,25 +15,29 @@ class AppTheme {
     Color? onAccentColor,
     Color? scaffoldBackgroundColor,
   }) {
-    late final ColorScheme colorScheme;
+    late final ThemeData themeData;
+    late final ColorScheme defaultColorScheme;
     switch (brightness) {
       case Brightness.light:
-        colorScheme = const ColorScheme.light();
+        themeData = ThemeData.light();
+        defaultColorScheme = _lightColorScheme;
         break;
       case Brightness.dark:
-        colorScheme = const ColorScheme.dark();
+        themeData = ThemeData.dark();
+        defaultColorScheme = _darkColorScheme;
         break;
     }
 
     return ThemeData(
+      useMaterial3: true,
       brightness: brightness,
-      fontFamily: _defaultFont,
+      fontFamily: _defaultFontFamily,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
-      appBarTheme: AppBarTheme(
-        elevation: _elevation,
+      appBarTheme: themeData.appBarTheme.copyWith(
+        elevation: _defaultElevation,
         backgroundColor: scaffoldBackgroundColor,
       ),
-      colorScheme: colorScheme.copyWith(
+      colorScheme: defaultColorScheme.copyWith(
         brightness: brightness,
         // primary: accentColor,
         secondary: accentColor,
@@ -43,18 +50,18 @@ class AppTheme {
       //   selectionHandleColor: accentColor?.withOpacity(0.75),
       // ),
       dialogTheme: DialogTheme(
-        elevation: _elevation,
+        elevation: _defaultElevation,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        elevation: _elevation,
-        highlightElevation: _elevation * 2,
+        elevation: _defaultElevation,
+        highlightElevation: _defaultElevation * 2,
         // backgroundColor: accentColor,
       ),
       snackBarTheme: SnackBarThemeData(
-        elevation: _elevation,
+        elevation: _defaultElevation,
         backgroundColor: accentColor,
         contentTextStyle: const TextStyle(fontSize: 16),
         // shape: RoundedRectangleBorder(

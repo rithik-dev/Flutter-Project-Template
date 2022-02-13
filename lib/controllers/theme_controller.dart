@@ -17,24 +17,28 @@ class ThemeController extends ChangeNotifier {
 
   ThemeMode? get themeMode => _themeMode;
 
+  ThemeMode _getThemeModeFromString(String themeString) {
+    try {
+      return ThemeMode.values.byName(themeString);
+    } catch (_) {
+      return ThemeMode.system;
+    }
+  }
+
   void _initialize() {
     final currentTheme = LocalStorage.read('theme');
-    switch (currentTheme) {
-      case 'light':
-        _themeMode = ThemeMode.light;
-        break;
-      case 'dark':
-        _themeMode = ThemeMode.dark;
-        break;
-      default:
-        _themeMode = ThemeMode.system;
-    }
+    _themeMode = _getThemeModeFromString(currentTheme);
     notifyListeners();
   }
 
-  void setThemeMode(ThemeMode themeMode) {
-    _themeMode = themeMode;
-    LocalStorage.write('theme', themeMode.name);
+  void setTheme(String theme) {
+    final newThemeMode = _getThemeModeFromString(theme);
+    _setThemeMode(newThemeMode);
+  }
+
+  void _setThemeMode(ThemeMode newThemeMode) {
+    _themeMode = newThemeMode;
+    LocalStorage.write('theme', newThemeMode.name);
     notifyListeners();
   }
 
