@@ -51,7 +51,7 @@ jobs:
       - name: Uploading android app bundle to the artifacts.
         uses: actions/upload-artifact@v2
         with:
-          name: release-${{ github.event.repository.name }}
+          name: release-${{ github.event.repository.name }}-${{ date }}
           path: build/app/outputs/bundle/release/app-release.aab
 
 #      - name: Cleaning and re-installing dependencies
@@ -63,5 +63,5 @@ jobs:
 #      - name: Upload iOS release to the artifacts.
 #        uses: actions/upload-artifact@v2
 #        with:
-#          name: release-${{ github.event.repository.name }}
+#          name: release-${{ github.event.repository.name }}-${{ date }}
 #          path: path/to/ios/release
