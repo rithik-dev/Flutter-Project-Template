@@ -18,7 +18,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   await LocalStorage.initialize();
-  runApp(_MainApp());
+  runApp(const MainApp());
 }
 
 class _ScrollBehavior extends ScrollBehavior {
@@ -28,7 +28,11 @@ class _ScrollBehavior extends ScrollBehavior {
   Widget buildViewportChrome(_, child, __) => child;
 }
 
-class _MainApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
+  const MainApp({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
