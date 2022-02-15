@@ -13,6 +13,7 @@ class AppTheme {
     Brightness brightness, {
     Color? textColor,
     Color? accentColor,
+    Color? onAccentColor,
     Color? scaffoldBackgroundColor,
   }) {
     late final ThemeData themeData;
@@ -31,10 +32,13 @@ class AppTheme {
     return ThemeData(
       brightness: brightness,
       fontFamily: _defaultFontFamily,
+      iconTheme: IconThemeData(color: textColor),
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       appBarTheme: themeData.appBarTheme.copyWith(
         elevation: _defaultElevation,
         backgroundColor: scaffoldBackgroundColor,
+        iconTheme: IconThemeData(color: textColor),
+        actionsIconTheme: IconThemeData(color: textColor),
         titleTextStyle: TextStyle(
           color: textColor,
           fontFamily: _defaultFontFamily,
@@ -46,7 +50,7 @@ class AppTheme {
         brightness: brightness,
         // primary: accentColor,
         secondary: accentColor,
-        onSecondary: textColor,
+        onSecondary: onAccentColor ?? textColor,
       ),
       toggleableActiveColor: accentColor,
       // textSelectionTheme: TextSelectionThemeData(
@@ -68,7 +72,10 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         elevation: _defaultElevation,
         backgroundColor: accentColor,
-        contentTextStyle: const TextStyle(fontSize: 16),
+        contentTextStyle: const TextStyle(
+          fontSize: 16,
+          fontFamily: _defaultFontFamily,
+        ),
         // shape: RoundedRectangleBorder(
         //   borderRadius: BorderRadius.circular(20),
         // ),

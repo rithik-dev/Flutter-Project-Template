@@ -9,5 +9,7 @@ class Globals {
 
   static final navigatorKey = GlobalKey<NavigatorState>();
 
+  static final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
   static BuildContext get context => navigatorKey.currentContext!;
 }

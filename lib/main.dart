@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -46,6 +45,7 @@ class MainApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: _appBuilder,
         scrollBehavior: const _ScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -54,9 +54,17 @@ class MainApp extends StatelessWidget {
         supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
         navigatorKey: Globals.navigatorKey,
+        scaffoldMessengerKey: Globals.scaffoldMessengerKey,
         onGenerateRoute: RouteGenerator.generateRoute,
         initialRoute: SplashScreen.id,
       ),
+    );
+  }
+
+  Widget _appBuilder(BuildContext context, Widget? child) {
+    return AnnotatedRegion(
+      child: child!,
+      value: SystemUiOverlayStyle.light,
     );
   }
 }

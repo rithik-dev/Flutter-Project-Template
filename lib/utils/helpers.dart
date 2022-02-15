@@ -1,21 +1,22 @@
 import 'dart:developer' as devtools show log;
 
 import 'package:flutter/material.dart';
+import 'package:project_template/utils/globals.dart';
 
-void showSnackBar(
-  BuildContext context, {
+void showSnackBar({
   required String text,
   Duration duration = const Duration(seconds: 2),
 }) {
-  ScaffoldMessenger.of(context).showSnackBar(
+  Globals.scaffoldMessengerKey.currentState?.showSnackBar(
     SnackBar(content: Text(text), duration: duration),
   );
 }
 
 bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 
-String capitalize(String text) =>
-    '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
+String capitalize(String text) => isNullOrBlank(text)
+    ? ''
+    : '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
 
 void log(
   String screenId, {
