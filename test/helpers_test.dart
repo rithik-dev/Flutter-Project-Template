@@ -3,10 +3,10 @@ import 'package:project_template/utils/helpers.dart';
 
 void main() {
   test('Check capitalize function', () {
-    expect(capitalize(''), '');
-    expect(capitalize('a'), 'A');
-    expect(capitalize('hello'), 'Hello');
-    expect(capitalize('Hello'), 'Hello');
+    expect(capitalizeFirst(''), '');
+    expect(capitalizeFirst('a'), 'A');
+    expect(capitalizeFirst('hello'), 'Hello');
+    expect(capitalizeFirst('Hello'), 'Hello');
   });
 
   test('Check isNullOrBlank function', () {

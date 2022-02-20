@@ -16,15 +16,12 @@ class AppTheme {
     Color? onAccentColor,
     Color? scaffoldBackgroundColor,
   }) {
-    late final ThemeData themeData;
     late final ColorScheme defaultColorScheme;
     switch (brightness) {
       case Brightness.light:
-        themeData = ThemeData.light();
         defaultColorScheme = _lightColorScheme;
         break;
       case Brightness.dark:
-        themeData = ThemeData.dark();
         defaultColorScheme = _darkColorScheme;
         break;
     }
@@ -34,9 +31,9 @@ class AppTheme {
       fontFamily: _defaultFontFamily,
       iconTheme: IconThemeData(color: textColor),
       scaffoldBackgroundColor: scaffoldBackgroundColor,
-      appBarTheme: themeData.appBarTheme.copyWith(
+      appBarTheme: AppBarTheme(
         elevation: _defaultElevation,
-        backgroundColor: scaffoldBackgroundColor,
+        color: scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: textColor),
         actionsIconTheme: IconThemeData(color: textColor),
         titleTextStyle: TextStyle(
@@ -73,7 +70,7 @@ class AppTheme {
         elevation: _defaultElevation,
         backgroundColor: accentColor,
         contentTextStyle: const TextStyle(
-          fontSize: 16,
+          fontSize: 18,
           fontFamily: _defaultFontFamily,
         ),
         // shape: RoundedRectangleBorder(

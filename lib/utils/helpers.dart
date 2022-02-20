@@ -14,9 +14,9 @@ void showSnackBar({
 
 bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 
-String capitalize(String text) => isNullOrBlank(text)
+String capitalizeFirst(String? text) => isNullOrBlank(text)
     ? ''
-    : '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
+    : '${text?[0].toUpperCase()}${text?.substring(1).toLowerCase()}';
 
 void log(
   String screenId, {

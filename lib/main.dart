@@ -62,7 +62,7 @@ class MainApp extends StatelessWidget {
   }
 
   Widget _appBuilder(BuildContext context, Widget? child) {
-    return AnnotatedRegion(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
       child: child!,
       value: SystemUiOverlayStyle.light,
     );

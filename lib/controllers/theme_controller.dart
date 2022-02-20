@@ -27,7 +27,7 @@ class ThemeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get currentThemeName => capitalize(_themeMode!.name);
+  String get currentThemeName => capitalizeFirst(_themeMode!.name);
 
   ThemeMode _getThemeModeFromString(String? themeString) {
     try {
