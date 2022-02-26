@@ -21,7 +21,9 @@ void main() async {
 }
 
 class _ScrollBehavior extends ScrollBehavior {
-  const _ScrollBehavior() : super();
+  const _ScrollBehavior({
+    AndroidOverscrollIndicator? androidOverscrollIndicator,
+  }) : super(androidOverscrollIndicator: androidOverscrollIndicator);
 
   @override
   Widget buildViewportChrome(_, child, __) => child;
