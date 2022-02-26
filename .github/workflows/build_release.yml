@@ -15,9 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # ADD CURRENT DATE TIME TO ENV
-      - name: Setting current date time as environment variable
-        id: date
-        run: echo "::set-output name=date::$(date +'D%d%m%YT%H%M%S')"
+      - name: Getting current date time
+        uses: josStorer/get-current-time@v2
+        id: date-time
+        with:
+          format: DoMMMYYYY-hhmmssA
+          utcOffset: "+05:30"
 
       # BASIC SETUP
       - uses: actions/checkout@v2
@@ -40,7 +43,7 @@ jobs:
       - name: Uploading android APK to the artifacts.
         uses: actions/upload-artifact@v2
         with:
-          name: release-${{ github.event.repository.name }}-${{ steps.date.outputs.date }}
+          name: release-${{ github.event.repository.name }}-${{ steps.date-time.outputs.formattedTime }}
           path: build/app/outputs/apk/release/app-release.apk
 
       - name: Cleaning and re-installing dependencies
@@ -52,7 +55,7 @@ jobs:
       - name: Uploading android app bundle to the artifacts.
         uses: actions/upload-artifact@v2
         with:
-          name: release-${{ github.event.repository.name }}-${{ steps.date.outputs.date }}
+          name: release-${{ github.event.repository.name }}-${{ steps.date-time.outputs.formattedTime }}
           path: build/app/outputs/bundle/release/app-release.aab
 
 #      - name: Cleaning and re-installing dependencies
@@ -64,5 +67,5 @@ jobs:
 #      - name: Upload iOS release to the artifacts.
 #        uses: actions/upload-artifact@v2
 #        with:
-#          name: release-${{ github.event.repository.name }}-${{ steps.date.outputs.date }}
+#          name: release-${{ github.event.repository.name }}-${{ steps.date-time.outputs.formattedTime }}
 #          path: path/to/ios/release
