@@ -17,7 +17,7 @@ jobs:
       # ADD CURRENT DATE TIME TO ENV
       - name: Setting current date time as environment variable
         id: date
-        run: echo "::set-output name=date::$(date +'D%Y-%m-%dT%H-%M-%S')"
+        run: echo "::set-output name=date::$(date +'D%d%m%YT%H%M%S')"
 
       # BASIC SETUP
       - uses: actions/checkout@v2
