@@ -19,7 +19,7 @@ jobs:
         uses: josStorer/get-current-time@v2
         id: date-time
         with:
-          format: DoMMMYYYY-hhmmssA
+          format: DoMMMYYYY@hhmmssA
           utcOffset: "+05:30"
 
       # BASIC SETUP
