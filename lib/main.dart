@@ -47,7 +47,6 @@ class MainApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        builder: _appBuilder,
         scrollBehavior: const _ScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -60,13 +59,6 @@ class MainApp extends StatelessWidget {
         onGenerateRoute: RouteGenerator.generateRoute,
         initialRoute: SplashScreen.id,
       ),
-    );
-  }
-
-  Widget _appBuilder(BuildContext context, Widget? child) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      child: child!,
-      value: SystemUiOverlayStyle.light,
     );
   }
 }

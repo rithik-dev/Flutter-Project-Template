@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppTheme {
   const AppTheme._();
 
   static const _defaultElevation = 2.5;
   static const _defaultFontFamily = 'ProductSans';
-
-  static const _lightColorScheme = ColorScheme.light();
-  static const _darkColorScheme = ColorScheme.dark();
 
   static ThemeData _baseTheme(
     Brightness brightness, {
@@ -17,12 +15,15 @@ class AppTheme {
     Color? scaffoldBackgroundColor,
   }) {
     late final ColorScheme defaultColorScheme;
+    late final SystemUiOverlayStyle systemUiOverlayStyle;
     switch (brightness) {
       case Brightness.light:
-        defaultColorScheme = _lightColorScheme;
+        defaultColorScheme = const ColorScheme.light();
+        systemUiOverlayStyle = SystemUiOverlayStyle.dark;
         break;
       case Brightness.dark:
-        defaultColorScheme = _darkColorScheme;
+        defaultColorScheme = const ColorScheme.dark();
+        systemUiOverlayStyle = SystemUiOverlayStyle.light;
         break;
     }
 
@@ -33,6 +34,7 @@ class AppTheme {
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       appBarTheme: AppBarTheme(
         elevation: _defaultElevation,
+        systemOverlayStyle: systemUiOverlayStyle,
         color: scaffoldBackgroundColor,
         iconTheme: IconThemeData(color: textColor),
         actionsIconTheme: IconThemeData(color: textColor),
