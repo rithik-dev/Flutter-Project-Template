@@ -20,10 +20,12 @@ class AppTheme {
       case Brightness.light:
         defaultColorScheme = const ColorScheme.light();
         systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+        textColor ??= Colors.black;
         break;
       case Brightness.dark:
         defaultColorScheme = const ColorScheme.dark();
         systemUiOverlayStyle = SystemUiOverlayStyle.light;
+        textColor ??= Colors.white;
         break;
     }
 
@@ -79,10 +81,14 @@ class AppTheme {
         //   borderRadius: BorderRadius.circular(20),
         // ),
       ),
-      pageTransitionsTheme: const PageTransitionsTheme(
+      // cupertinoOverrideTheme: CupertinoThemeData(
+      //   brightness: brightness,
+      //   scaffoldBackgroundColor: scaffoldBackgroundColor,
+      // ),
+      pageTransitionsTheme: PageTransitionsTheme(
         builders: <TargetPlatform, PageTransitionsBuilder>{
-          TargetPlatform.android: ZoomPageTransitionsBuilder(),
-          TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+          for (final targetValue in TargetPlatform.values)
+            targetValue: const _SlideLeftTransitionsBuilder(),
         },
       ),
     );
@@ -90,7 +96,6 @@ class AppTheme {
 
   static final lightTheme = _baseTheme(
     Brightness.light,
-    textColor: Colors.black,
     accentColor: const Color(0xFF0669F8),
     scaffoldBackgroundColor: const Color(0xFFDCDFE2),
   ).copyWith(
@@ -99,10 +104,28 @@ class AppTheme {
 
   static final darkTheme = _baseTheme(
     Brightness.dark,
-    textColor: Colors.white,
     accentColor: const Color(0xFFEB05FF),
     scaffoldBackgroundColor: const Color(0xFF344FA1),
   ).copyWith(
     cardColor: const Color(0xFF031956),
   );
+}
+
+class _SlideLeftTransitionsBuilder extends PageTransitionsBuilder {
+  const _SlideLeftTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(_, __, animation, ____, child) {
+    return SlideTransition(
+      position: CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeInCirc,
+        reverseCurve: Curves.easeOutCirc,
+      ).drive(Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: const Offset(0.0, 0.0),
+      )),
+      child: child,
+    );
+  }
 }

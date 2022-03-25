@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:project_template/controllers/locale_controller.dart';
 import 'package:project_template/controllers/theme_controller.dart';
 import 'package:project_template/l10n/l10n.dart';
@@ -11,22 +12,21 @@ import 'package:project_template/utils/route_generator.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // initialize main
+  await Future.wait([
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]),
+    LocalStorage.initialize(),
   ]);
-  await LocalStorage.initialize();
+
+  // end
+  FlutterNativeSplash.remove();
   runApp(const _MainApp());
-}
-
-class _ScrollBehavior extends ScrollBehavior {
-  const _ScrollBehavior({
-    AndroidOverscrollIndicator? androidOverscrollIndicator,
-  }) : super(androidOverscrollIndicator: androidOverscrollIndicator);
-
-  @override
-  Widget buildViewportChrome(_, child, __) => child;
 }
 
 class _MainApp extends StatelessWidget {
@@ -47,7 +47,7 @@ class _MainApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        scrollBehavior: const _ScrollBehavior(),
+        scrollBehavior: const _DefaultScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         locale: LocaleController.of(context).locale,
@@ -61,4 +61,13 @@ class _MainApp extends StatelessWidget {
       ),
     );
   }
+}
+
+class _DefaultScrollBehavior extends ScrollBehavior {
+  const _DefaultScrollBehavior({
+    AndroidOverscrollIndicator? androidOverscrollIndicator,
+  }) : super(androidOverscrollIndicator: androidOverscrollIndicator);
+
+  @override
+  Widget buildViewportChrome(_, child, __) => child;
 }
