@@ -119,11 +119,11 @@ class _SlideLeftTransitionsBuilder extends PageTransitionsBuilder {
     return SlideTransition(
       position: CurvedAnimation(
         parent: animation,
-        curve: Curves.easeInCirc,
-        reverseCurve: Curves.easeOutCirc,
+        curve: Curves.easeIn,
+        reverseCurve: Curves.easeOut,
       ).drive(Tween<Offset>(
-        begin: const Offset(1.0, 0.0),
-        end: const Offset(0.0, 0.0),
+        begin: const Offset(1, 0),
+        end: const Offset(0, 0),
       )),
       child: child,
     );
