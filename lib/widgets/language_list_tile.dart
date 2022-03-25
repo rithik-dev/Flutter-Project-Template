@@ -39,7 +39,7 @@ class _ChooseLanguageDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LocaleController>(
-      builder: (context, localCon, _) => Dialog(
+      builder: (context, localeCon, _) => Dialog(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,10 +53,10 @@ class _ChooseLanguageDialog extends StatelessWidget {
             ),
             ...L10n.supportedLocales.map(
               (locale) => RadioListTile<Locale>(
-                title: Text(L10n.getLanguageName(locale.languageCode)!),
+                title: Text(L10n.getLanguageName(locale)!),
                 value: locale,
-                groupValue: localCon.locale,
-                onChanged: (v) => localCon.setLocaleString(v!.languageCode),
+                groupValue: localeCon.locale,
+                onChanged: (_) => localeCon.setLocale(locale),
               ),
             ),
             Padding(

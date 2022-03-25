@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:project_template/utils/helpers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
@@ -26,6 +27,7 @@ class LocalStorage {
         );
       }
     }
+    log('LocalStorage', msg: readAll().toString());
   }
 
   static Map<String, dynamic> readAll() {
@@ -39,6 +41,8 @@ class LocalStorage {
     if (value != null && value is List) return value.cast<String>() as T;
     return value as T?;
   }
+
+  static bool containsKey(String key) => _prefs.containsKey(key);
 
   static void remove(String key) => _prefs.remove(key);
 

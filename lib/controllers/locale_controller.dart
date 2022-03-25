@@ -21,8 +21,7 @@ class LocaleController extends ChangeNotifier {
 
   Locale? get locale => _locale;
 
-  String get currentLanguageName =>
-      L10n.getLanguageName(_locale!.languageCode)!;
+  String get currentLanguageName => L10n.getLanguageName(_locale!)!;
 
   void _initialize() {
     final currentLocale = LocalStorage.read(_sharedPrefsKey);
@@ -32,17 +31,39 @@ class LocaleController extends ChangeNotifier {
 
   Locale _getLocaleFromString(String? localeName) {
     if (localeName == null) return _fallbackLocale;
-    return Locale(localeName);
+
+    if (localeName.contains('_')) {
+      // has a specific country code
+      final x = localeName.split('_');
+      return Locale(x.first, x.last);
+    } else {
+      return Locale(localeName);
+    }
   }
 
-  void setLocaleString(String locale) {
-    final newLocale = Locale(locale);
-
+  void setLocale(
+    Locale newLocale, {
+    bool setOnlyIfNotUpdatedManually = false,
+    bool updateLocalStorage = true,
+  }) {
     // Only update if present in list of supported locales.
-    if (!L10n.supportedLocales.contains(newLocale)) return;
+    final idx = L10n.supportedLocales.toList().indexWhere(
+          (locale) => locale.languageCode == newLocale.languageCode,
+        );
+    final isSupported = idx != -1;
+    if (!isSupported) return;
+
+    if (setOnlyIfNotUpdatedManually) {
+      // checking whether 'locale' exists in storage
+      final exists = LocalStorage.containsKey(_sharedPrefsKey);
+      if (exists) return;
+    }
 
     _locale = newLocale;
-    LocalStorage.write(_sharedPrefsKey, newLocale.languageCode);
+    if (updateLocalStorage) {
+      LocalStorage.write(_sharedPrefsKey, _locale?.toString());
+    }
+
     notifyListeners();
   }
 

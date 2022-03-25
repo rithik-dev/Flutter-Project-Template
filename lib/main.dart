@@ -50,7 +50,18 @@ class _MainApp extends StatelessWidget {
         scrollBehavior: const _DefaultScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        locale: LocaleController.of(context).locale,
+        localeResolutionCallback: (deviceLocale, _) {
+          if (deviceLocale != null) {
+            WidgetsBinding.instance?.addPostFrameCallback((_) {
+              LocaleController.of(context, listen: false).setLocale(
+                deviceLocale,
+                setOnlyIfNotUpdatedManually: true,
+                updateLocalStorage: false,
+              );
+            });
+          }
+          return null;
+        },
         themeMode: ThemeController.of(context).themeMode,
         supportedLocales: L10n.supportedLocales,
         localizationsDelegates: L10n.localizationsDelegates,
