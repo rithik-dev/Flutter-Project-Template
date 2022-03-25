@@ -1,6 +1,6 @@
 # Flutter Project Template
 
-A new Flutter project.
+A starter template for my Flutter projects
 
 ## Getting Started
 

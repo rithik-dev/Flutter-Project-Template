@@ -115,7 +115,7 @@ class _SlideLeftTransitionsBuilder extends PageTransitionsBuilder {
   const _SlideLeftTransitionsBuilder();
 
   @override
-  Widget buildTransitions<T>(_, __, animation, ____, child) {
+  Widget buildTransitions<T>(_, __, animation, ___, child) {
     return SlideTransition(
       position: CurvedAnimation(
         parent: animation,
