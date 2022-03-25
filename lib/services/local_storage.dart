@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:project_template/utils/helpers.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorage {
@@ -27,7 +26,6 @@ class LocalStorage {
         );
       }
     }
-    log('LocalStorage', msg: readAll().toString());
   }
 
   static Map<String, dynamic> readAll() {

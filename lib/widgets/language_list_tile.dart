@@ -55,18 +55,33 @@ class _ChooseLanguageDialog extends StatelessWidget {
               (locale) => RadioListTile<Locale>(
                 title: Text(L10n.getLanguageName(locale)!),
                 value: locale,
-                groupValue: localeCon.locale,
+                groupValue: localeCon.locale == locale
+                    ? localeCon.locale
+                    : Locale(localeCon.locale!.languageCode),
                 onChanged: (_) => localeCon.setLocale(locale),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(5),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(L10n.dictionary.ok),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      localeCon.clear();
+                      localeCon.setLocale(
+                        L10n.getAppLocale(context),
+                        updateLocalStorage: false,
+                      );
+                      Navigator.pop(context);
+                    },
+                    child: Text(L10n.dictionary.setSystemDefault),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text(L10n.dictionary.ok),
+                  ),
+                ],
               ),
             ),
           ],

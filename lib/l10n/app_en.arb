@@ -9,6 +9,7 @@
     }
   },
   "language": "Language",
+  "setSystemDefault": "Set System Default",
   "tapBackButtonAgainToExit": "Tap the back button again to exit the app!",
   "ok": "OK",
   "theme": "Theme",

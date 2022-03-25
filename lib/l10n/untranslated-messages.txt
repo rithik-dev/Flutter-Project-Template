@@ -1,6 +1,7 @@
 {
   "hi": [
     "language",
+    "setSystemDefault",
     "tapBackButtonAgainToExit",
     "ok",
     "theme",

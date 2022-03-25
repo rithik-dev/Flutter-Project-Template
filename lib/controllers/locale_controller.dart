@@ -67,9 +67,8 @@ class LocaleController extends ChangeNotifier {
     notifyListeners();
   }
 
-// void clear() {
-//   _locale = null;
-//   LocalStorage.remove(_sharedPrefsKey);
-//   notifyListeners();
-// }
+  void clear() {
+    // _locale = null;
+    LocalStorage.remove(_sharedPrefsKey);
+  }
 }
