@@ -104,10 +104,10 @@ class AppTheme {
 
   static final darkTheme = _baseTheme(
     Brightness.dark,
-    accentColor: const Color(0xFFEB05FF),
-    scaffoldBackgroundColor: const Color(0xFF344FA1),
+    accentColor: const Color(0xFFD49B54),
+    scaffoldBackgroundColor: const Color(0xFF17001F),
   ).copyWith(
-    cardColor: const Color(0xFF031956),
+    cardColor: const Color(0xFF46244C),
   );
 }
 
