@@ -1,5 +1,6 @@
 {
   "hi": [
+    "appName",
     "language",
     "setSystemDefault",
     "tapBackButtonAgainToExit",

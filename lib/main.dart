@@ -55,8 +55,8 @@ class _MainApp extends StatelessWidget {
             WidgetsBinding.instance?.addPostFrameCallback((_) {
               LocaleController.of(context, listen: false).setLocale(
                 deviceLocale,
-                setOnlyIfNotUpdatedManually: true,
                 updateLocalStorage: false,
+                setOnlyIfNotUpdatedManually: true,
               );
             });
           }

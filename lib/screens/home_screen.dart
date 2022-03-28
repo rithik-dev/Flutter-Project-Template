@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Project Template'),
+          title: Text(L10n.dictionary.appName),
         ),
         body: DoubleBackToCloseApp(
           snackBar: SnackBar(

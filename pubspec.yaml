@@ -18,7 +18,7 @@ dependencies:
   provider: ^6.0.2
   shared_preferences: ^2.0.13
   double_back_to_close_app: ^2.1.0
-  flutter_native_splash: ^2.1.1
+  flutter_native_splash: ^2.1.2+1
 
 dev_dependencies:
   flutter_test:
