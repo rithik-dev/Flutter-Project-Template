@@ -3,13 +3,17 @@ import 'dart:developer' as devtools show log;
 import 'package:flutter/material.dart';
 import 'package:project_template/utils/globals.dart';
 
-void showSnackBar({
-  required String text,
+void showSnackBar(
+  String? text, {
   Duration duration = const Duration(seconds: 2),
 }) {
-  Globals.scaffoldMessengerKey.currentState?.showSnackBar(
-    SnackBar(content: Text(text), duration: duration),
-  );
+  if (isNullOrBlank(text)) return;
+
+  Globals.scaffoldMessengerKey.currentState
+    ?..clearSnackBars()
+    ..showSnackBar(
+      SnackBar(content: Text(text!), duration: duration),
+    );
 }
 
 bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
