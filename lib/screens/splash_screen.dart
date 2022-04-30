@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_template/screens/home_screen.dart';
+import 'package:project_template/utils/app_assets.dart';
 import 'package:project_template/widgets/custom_loader.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(50),
                 child: Center(
-                  child: Image.asset('assets/images/app-icon.png'),
+                  child: Image.asset(AppAssets.appIcon),
                 ),
               ),
             ),

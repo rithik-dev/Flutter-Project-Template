@@ -9,13 +9,19 @@ import 'package:project_template/services/local_storage.dart';
 import 'package:project_template/utils/app_theme.dart';
 import 'package:project_template/utils/globals.dart';
 import 'package:project_template/utils/route_generator.dart';
+import 'package:project_template/widgets/flutter_error_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  // initialize main
+  // set custom error page
+  ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+    return FlutterErrorWidget(errorDetails: errorDetails);
+  };
+
+  // initialize
   await Future.wait([
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

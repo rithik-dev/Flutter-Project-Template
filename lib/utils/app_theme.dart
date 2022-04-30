@@ -73,10 +73,12 @@ class AppTheme {
       snackBarTheme: SnackBarThemeData(
         elevation: _defaultElevation,
         backgroundColor: accentColor,
-        contentTextStyle: const TextStyle(
-          fontSize: 18,
+        contentTextStyle: TextStyle(
+          fontSize: 16,
           fontFamily: _defaultFontFamily,
+          color: onAccentColor ?? textColor,
         ),
+        behavior: SnackBarBehavior.floating,
         // shape: RoundedRectangleBorder(
         //   borderRadius: BorderRadius.circular(20),
         // ),
@@ -121,10 +123,12 @@ class _SlideLeftTransitionsBuilder extends PageTransitionsBuilder {
         parent: animation,
         curve: Curves.easeIn,
         reverseCurve: Curves.easeOut,
-      ).drive(Tween<Offset>(
-        begin: const Offset(1, 0),
-        end: const Offset(0, 0),
-      )),
+      ).drive(
+        Tween<Offset>(
+          begin: const Offset(1, 0),
+          end: const Offset(0, 0),
+        ),
+      ),
       child: child,
     );
   }
