@@ -1,5 +1,3 @@
-import 'dart:developer' as devtools show log;
-
 import 'package:flutter/material.dart';
 import 'package:project_template/utils/globals.dart';
 
@@ -21,19 +19,6 @@ bool isNullOrBlank(String? data) => data?.trim().isEmpty ?? true;
 String capitalizeFirst(String? text) => isNullOrBlank(text)
     ? ''
     : '${text?[0].toUpperCase()}${text?.substring(1).toLowerCase()}';
-
-void log(
-  String screenId, {
-  dynamic msg,
-  dynamic error,
-  StackTrace? stackTrace,
-}) =>
-    devtools.log(
-      msg.toString(),
-      error: error,
-      name: screenId,
-      stackTrace: stackTrace,
-    );
 
 // Size getParagraphSize(
 //   String? text, {

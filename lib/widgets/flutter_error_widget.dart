@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:project_template/utils/helpers.dart';
+import 'package:project_template/utils/logger.dart';
 
 class FlutterErrorWidget extends StatefulWidget {
   static const id = 'FlutterErrorWidget';
@@ -16,12 +16,11 @@ class FlutterErrorWidget extends StatefulWidget {
   State<FlutterErrorWidget> createState() => _FlutterErrorWidgetState();
 }
 
-class _FlutterErrorWidgetState extends State<FlutterErrorWidget> {
+class _FlutterErrorWidgetState extends State<FlutterErrorWidget>
+    with Logger<FlutterErrorWidget> {
   void _sendError() {
-    log(
-      FlutterErrorWidget.id,
-      msg: widget.errorDetails.library,
-      error: widget.errorDetails.exception,
+    logErr(
+      widget.errorDetails.exception,
       stackTrace: widget.errorDetails.stack,
     );
 
