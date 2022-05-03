@@ -29,17 +29,19 @@ class AppTheme {
         break;
     }
 
+    final _iconThemeData = IconThemeData(color: accentColor);
+
     return ThemeData(
       brightness: brightness,
       fontFamily: _defaultFontFamily,
-      iconTheme: IconThemeData(color: textColor),
+      iconTheme: _iconThemeData,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       appBarTheme: AppBarTheme(
         elevation: _defaultElevation,
         systemOverlayStyle: systemUiOverlayStyle,
         color: scaffoldBackgroundColor,
-        iconTheme: IconThemeData(color: textColor),
-        actionsIconTheme: IconThemeData(color: textColor),
+        iconTheme: _iconThemeData,
+        actionsIconTheme: _iconThemeData,
         titleTextStyle: TextStyle(
           color: textColor,
           fontFamily: _defaultFontFamily,
