@@ -15,19 +15,37 @@ class AppTheme {
     Color? scaffoldBackgroundColor,
   }) {
     late final ColorScheme defaultColorScheme;
-    late final SystemUiOverlayStyle systemUiOverlayStyle;
+
+    /// The other brightness...
+    ///
+    /// if [brightness] is [Brightness.light],
+    /// then [contrastingBrightness] is [Brightness.dark].
+    ///
+    /// if [brightness] is [Brightness.dark],
+    /// then [contrastingBrightness] is [Brightness.light].
+    late final Brightness contrastingBrightness;
+
     switch (brightness) {
       case Brightness.light:
         defaultColorScheme = const ColorScheme.light();
-        systemUiOverlayStyle = SystemUiOverlayStyle.dark;
+        contrastingBrightness = Brightness.dark;
         textColor ??= Colors.black;
         break;
       case Brightness.dark:
         defaultColorScheme = const ColorScheme.dark();
-        systemUiOverlayStyle = SystemUiOverlayStyle.light;
+        contrastingBrightness = Brightness.light;
         textColor ??= Colors.white;
         break;
     }
+
+    final systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarBrightness: brightness,
+      statusBarColor: scaffoldBackgroundColor,
+      systemNavigationBarColor: scaffoldBackgroundColor,
+      systemNavigationBarDividerColor: scaffoldBackgroundColor,
+      statusBarIconBrightness: contrastingBrightness,
+      systemNavigationBarIconBrightness: contrastingBrightness,
+    );
 
     final _iconThemeData = IconThemeData(color: accentColor);
 

@@ -53,6 +53,7 @@ class _MainApp extends StatelessWidget {
       ],
       builder: (context, _) => MaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: _appBuilder,
         scrollBehavior: const _DefaultScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
@@ -77,6 +78,14 @@ class _MainApp extends StatelessWidget {
         initialRoute: SplashScreen.id,
       ),
     );
+  }
+
+  Widget _appBuilder(BuildContext context, Widget? child) {
+    SystemChrome.setSystemUIOverlayStyle(
+      Theme.of(context).appBarTheme.systemOverlayStyle!,
+    );
+
+    return child!;
   }
 }
 
