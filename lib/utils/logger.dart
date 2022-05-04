@@ -4,13 +4,13 @@ import 'dart:developer' as devtools show log;
 void log<T>({
   dynamic msg,
   dynamic error,
-  String? screenId,
+  String? id,
   StackTrace? stackTrace,
 }) {
   devtools.log(
     msg.toString(),
     error: error,
-    name: screenId ?? T.toString(),
+    name: id ?? T.toString(),
     stackTrace: stackTrace,
   );
 }
