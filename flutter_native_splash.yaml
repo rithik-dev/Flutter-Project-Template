@@ -16,7 +16,7 @@ flutter_native_splash:
   # flutter pub run flutter_native_splash:remove
 
   color: "#DCDFE2"
-  color_dark: "#17001F"
+  color_dark: "#040F2D"
 
   #  background_image: "assets/background.png"
   #  background_image_dark: "assets/dark-background.png"

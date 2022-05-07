@@ -119,17 +119,19 @@ class AppTheme {
   static final lightTheme = _baseTheme(
     Brightness.light,
     accentColor: const Color(0xFF0669F8),
+    onAccentColor: Colors.white,
     scaffoldBackgroundColor: const Color(0xFFDCDFE2),
   ).copyWith(
-    cardColor: const Color(0xFFFFFFFF),
+    cardColor: const Color(0xFFCACFD6),
   );
 
   static final darkTheme = _baseTheme(
     Brightness.dark,
-    accentColor: const Color(0xFFD49B54),
-    scaffoldBackgroundColor: const Color(0xFF17001F),
+    accentColor: Colors.tealAccent,
+    onAccentColor: Colors.black,
+    scaffoldBackgroundColor: const Color(0xFF040F2D),
   ).copyWith(
-    cardColor: const Color(0xFF46244C),
+    cardColor: const Color(0xFF091642),
   );
 }
 

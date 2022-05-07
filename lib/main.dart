@@ -81,9 +81,10 @@ class _MainApp extends StatelessWidget {
   }
 
   Widget _appBuilder(BuildContext context, Widget? child) {
-    SystemChrome.setSystemUIOverlayStyle(
-      Theme.of(context).appBarTheme.systemOverlayStyle!,
-    );
+    final appBarOverlayStyle = Theme.of(context).appBarTheme.systemOverlayStyle;
+    if (appBarOverlayStyle != null) {
+      SystemChrome.setSystemUIOverlayStyle(appBarOverlayStyle);
+    }
 
     return child!;
   }
