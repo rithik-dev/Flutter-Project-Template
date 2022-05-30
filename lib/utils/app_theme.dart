@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// @github/rithik-dev
+//
 class AppTheme {
   const AppTheme._();
 
@@ -47,19 +49,20 @@ class AppTheme {
       systemNavigationBarIconBrightness: contrastingBrightness,
     );
 
-    final _iconThemeData = IconThemeData(color: accentColor);
+    final iconThemeData = IconThemeData(color: accentColor);
 
     return ThemeData(
+      useMaterial3: true,
       brightness: brightness,
       fontFamily: _defaultFontFamily,
-      iconTheme: _iconThemeData,
+      iconTheme: iconThemeData,
       scaffoldBackgroundColor: scaffoldBackgroundColor,
       appBarTheme: AppBarTheme(
         elevation: _defaultElevation,
         systemOverlayStyle: systemUiOverlayStyle,
         color: scaffoldBackgroundColor,
-        iconTheme: _iconThemeData,
-        actionsIconTheme: _iconThemeData,
+        iconTheme: iconThemeData,
+        actionsIconTheme: iconThemeData,
         titleTextStyle: TextStyle(
           color: textColor,
           fontFamily: _defaultFontFamily,
@@ -108,10 +111,10 @@ class AppTheme {
       //   scaffoldBackgroundColor: scaffoldBackgroundColor,
       // ),
       pageTransitionsTheme: PageTransitionsTheme(
-        builders: <TargetPlatform, PageTransitionsBuilder>{
-          for (final targetValue in TargetPlatform.values)
-            targetValue: const _SlideLeftTransitionsBuilder(),
-        },
+        builders: Map<TargetPlatform, PageTransitionsBuilder>.fromIterable(
+          TargetPlatform.values,
+          value: (_) => const ZoomPageTransitionsBuilder(),
+        ),
       ),
     );
   }
@@ -133,25 +136,4 @@ class AppTheme {
   ).copyWith(
     cardColor: const Color(0xFF091642),
   );
-}
-
-class _SlideLeftTransitionsBuilder extends PageTransitionsBuilder {
-  const _SlideLeftTransitionsBuilder();
-
-  @override
-  Widget buildTransitions<T>(_, __, animation, ___, child) {
-    return SlideTransition(
-      position: CurvedAnimation(
-        parent: animation,
-        curve: Curves.easeIn,
-        reverseCurve: Curves.easeOut,
-      ).drive(
-        Tween<Offset>(
-          begin: const Offset(1, 0),
-          end: const Offset(0, 0),
-        ),
-      ),
-      child: child,
-    );
-  }
 }

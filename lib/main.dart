@@ -52,14 +52,12 @@ class _MainApp extends StatelessWidget {
         ),
       ],
       builder: (context, _) => MaterialApp(
-        debugShowCheckedModeBanner: false,
         builder: _appBuilder,
-        scrollBehavior: const _DefaultScrollBehavior(),
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         localeResolutionCallback: (deviceLocale, _) {
           if (deviceLocale != null) {
-            WidgetsBinding.instance?.addPostFrameCallback((_) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
               LocaleController.of(context, listen: false).setLocale(
                 deviceLocale,
                 updateLocalStorage: false,
@@ -88,13 +86,4 @@ class _MainApp extends StatelessWidget {
 
     return child!;
   }
-}
-
-class _DefaultScrollBehavior extends ScrollBehavior {
-  const _DefaultScrollBehavior({
-    AndroidOverscrollIndicator? androidOverscrollIndicator,
-  }) : super(androidOverscrollIndicator: androidOverscrollIndicator);
-
-  @override
-  Widget buildViewportChrome(_, child, __) => child;
 }

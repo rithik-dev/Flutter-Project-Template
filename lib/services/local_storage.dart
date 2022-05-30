@@ -14,12 +14,12 @@ class LocalStorage {
     if (value == null) {
       remove(key);
     } else {
-      final _val = value!;
-      if (_val is String) _prefs.setString(key, value);
-      if (_val is bool) _prefs.setBool(key, value);
-      if (_val is double) _prefs.setDouble(key, value);
-      if (_val is int) _prefs.setInt(key, value);
-      if (_val is List) {
+      final v = value!;
+      if (v is String) _prefs.setString(key, value);
+      if (v is bool) _prefs.setBool(key, value);
+      if (v is double) _prefs.setDouble(key, value);
+      if (v is int) _prefs.setInt(key, value);
+      if (v is List) {
         _prefs.setStringList(
           key,
           (value as List).map((e) => e.toString()).cast<String>().toList(),
@@ -29,9 +29,9 @@ class LocalStorage {
   }
 
   static Map<String, dynamic> readAll() {
-    final _all = <String, dynamic>{};
-    _prefs.getKeys().forEach((key) => _all[key] = LocalStorage.read(key));
-    return _all;
+    final all = <String, dynamic>{};
+    _prefs.getKeys().forEach((key) => all[key] = LocalStorage.read(key));
+    return all;
   }
 
   static T? read<T>(String key) {

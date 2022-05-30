@@ -1,6 +1,7 @@
 import 'dart:developer' as devtools show log;
 
-/// log
+// @github/rithik-dev
+//
 void log<T>({
   dynamic msg,
   dynamic error,
