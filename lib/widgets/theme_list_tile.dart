@@ -56,7 +56,7 @@ class _ChooseThemeDialog extends StatelessWidget {
               (themeMode) => RadioListTile<String>(
                 title: Text(capitalizeFirst(themeMode.name)),
                 value: themeMode.name,
-                groupValue: themeCon.themeMode?.name,
+                groupValue: themeCon.themeMode.name,
                 onChanged: (v) => themeCon.setThemeString(v!),
               ),
             ),

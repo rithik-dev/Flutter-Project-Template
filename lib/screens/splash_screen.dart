@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
     (() async {
       await Future.delayed(Duration.zero);
 
-      if(!mounted) return;
+      if (!mounted) return;
       Navigator.pushReplacementNamed(context, HomeScreen.id);
     })();
     super.initState();

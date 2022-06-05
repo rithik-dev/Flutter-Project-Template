@@ -17,9 +17,9 @@ class ThemeController extends ChangeNotifier {
     _initialize();
   }
 
-  ThemeMode? _themeMode;
+  late ThemeMode _themeMode;
 
-  ThemeMode? get themeMode => _themeMode;
+  ThemeMode get themeMode => _themeMode;
 
   void _initialize() {
     final currentTheme = LocalStorage.read(_sharedPrefsKey);
@@ -27,7 +27,7 @@ class ThemeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  String get currentThemeName => capitalizeFirst(_themeMode!.name);
+  String get currentThemeName => capitalizeFirst(_themeMode.name);
 
   ThemeMode _getThemeModeFromString(String? themeString) {
     try {
