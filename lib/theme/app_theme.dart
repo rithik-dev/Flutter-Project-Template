@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+part 'app_style.dart';
+
 // @github/rithik-dev
 //
 class AppTheme {
@@ -126,6 +128,9 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xFFDCDFE2),
   ).copyWith(
     cardColor: const Color(0xFFCACFD6),
+    extensions: <ThemeExtension>{
+      AppStyle._lightTheme(),
+    },
   );
 
   static final darkTheme = _baseTheme(
@@ -135,5 +140,8 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xFF040F2D),
   ).copyWith(
     cardColor: const Color(0xFF091642),
+    extensions: <ThemeExtension>{
+      AppStyle._darkTheme(),
+    },
   );
 }
