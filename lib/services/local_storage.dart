@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,15 +15,17 @@ class LocalStorage {
     if (value == null) {
       remove(key);
     } else {
-      final v = value!;
-      if (v is String) _prefs.setString(key, value);
-      if (v is bool) _prefs.setBool(key, value);
-      if (v is double) _prefs.setDouble(key, value);
-      if (v is int) _prefs.setInt(key, value);
-      if (v is List) {
+      if (value is String) _prefs.setString(key, value);
+      if (value is bool) _prefs.setBool(key, value);
+      if (value is double) _prefs.setDouble(key, value);
+      if (value is int) _prefs.setInt(key, value);
+      if (value is List) {
         _prefs.setStringList(
           key,
-          (value as List).map((e) => e.toString()).cast<String>().toList(),
+          value
+              .map((e) => e is String ? e : jsonEncode(e))
+              .cast<String>()
+              .toList(),
         );
       }
     }
@@ -36,7 +39,15 @@ class LocalStorage {
 
   static T? read<T>(String key) {
     final value = _prefs.get(key);
-    if (value != null && value is List) return value.cast<String>() as T;
+    if (value != null && value is List) {
+      return value.map((e) {
+        try {
+          return jsonDecode(e);
+        } catch (_) {
+          return e;
+        }
+      }).toList() as T;
+    }
     return value as T?;
   }
 
