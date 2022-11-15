@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:project_template/utils/result.dart';
 
 FutureOr<Result<T>> errorHandler<T>(
