@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project_template/utils/globals.dart';
 
-T themedValue<T>(T lightValue, T darkValue) {
-  switch (Theme.of(Globals.context).brightness) {
+T themedValue<T>(
+  BuildContext context,
+  T lightValue,
+  T darkValue,
+) {
+  switch (Theme.of(context).brightness) {
     case Brightness.light:
       return lightValue;
     case Brightness.dark:
