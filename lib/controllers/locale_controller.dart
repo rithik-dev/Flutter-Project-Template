@@ -11,7 +11,6 @@ class LocaleController extends ChangeNotifier {
       Provider.of<LocaleController>(context, listen: listen);
 
   static const _sharedPrefsKey = 'locale';
-  static const _fallbackLocale = Locale('en');
 
   LocaleController() {
     _initialize();
@@ -24,14 +23,14 @@ class LocaleController extends ChangeNotifier {
   String get currentLanguageName => L10n.getLanguageName(_locale!)!;
 
   void _initialize() {
-    final currentLocale = LocalStorage.read(_sharedPrefsKey);
-    _locale = _getLocaleFromString(currentLocale);
-    notifyListeners();
+    final sharedPrefsLocale = LocalStorage.read(_sharedPrefsKey);
+    if (sharedPrefsLocale != null) {
+      _locale = _getLocaleFromString(sharedPrefsLocale);
+      notifyListeners();
+    }
   }
 
-  Locale _getLocaleFromString(String? localeName) {
-    if (localeName == null) return _fallbackLocale;
-
+  Locale _getLocaleFromString(String localeName) {
     if (localeName.contains('_')) {
       // has a specific country code
       final x = localeName.split('_');
@@ -45,13 +44,10 @@ class LocaleController extends ChangeNotifier {
     Locale newLocale, {
     bool setOnlyIfNotUpdatedManually = false,
     bool updateLocalStorage = true,
+    bool notify = true,
   }) {
     // Only update if present in list of supported locales.
-    final idx = L10n.supportedLocales.toList().indexWhere(
-          (locale) => locale.languageCode == newLocale.languageCode,
-        );
-    final isSupported = idx != -1;
-    if (!isSupported) return;
+    if (!L10n.isSupported(newLocale)) return;
 
     if (setOnlyIfNotUpdatedManually) {
       // checking whether 'locale' exists in storage
@@ -64,11 +60,12 @@ class LocaleController extends ChangeNotifier {
       LocalStorage.write(_sharedPrefsKey, _locale?.toString());
     }
 
-    notifyListeners();
+    if (notify) notifyListeners();
   }
 
   void clear() {
-    // _locale = null;
+    _locale = null;
     LocalStorage.remove(_sharedPrefsKey);
+    notifyListeners();
   }
 }

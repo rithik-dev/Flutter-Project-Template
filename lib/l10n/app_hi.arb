@@ -1,3 +1,10 @@
 {
-  "welcome": "स्वागत हे {name}"
+  "welcome": "स्वागत हे {name}",
+  "language": "भाषा",
+  "setSystemDefault": "सिस्टम डिफ़ॉल्ट सेट करें",
+  "tapBackButtonAgainToExit": "ऐप से बाहर निकलने के लिए फिर से बैक बटन पर टैप करें!",
+  "ok": "ठीक है",
+  "theme": "थीम",
+  "chooseTheme": "थीम चुनें",
+  "chooseLanguage": "भाषा चुनें"
 }

@@ -12,18 +12,31 @@ class L10n {
     'hi': {null: 'हिन्दी'},
   };
 
+  static const fallbackLocale = Locale('en');
+
   static String? getLanguageName(Locale locale) =>
       _languagesMap[locale.languageCode]?[locale.countryCode] ??
       _languagesMap[locale.languageCode]?[null];
 
   static Iterable<Locale> get supportedLocales {
-    final _locales = <Locale>[];
+    final locales = <Locale>[];
     _languagesMap.forEach((languageCode, countryCodesMap) {
-      countryCodesMap.forEach((countryCode, languageName) {
-        _locales.add(Locale(languageCode, countryCode));
+      countryCodesMap.forEach((countryCode, _) {
+        locales.add(Locale(languageCode, countryCode));
       });
     });
-    return _locales;
+    return locales;
+  }
+
+  static bool isSupported(Locale locale) {
+    try {
+      supportedLocales.firstWhere(
+        (element) => locale.languageCode == element.languageCode,
+      );
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   static List<LocalizationsDelegate> get localizationsDelegates =>
