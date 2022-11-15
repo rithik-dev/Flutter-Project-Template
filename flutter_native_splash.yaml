@@ -1,4 +1,5 @@
 # flutter pub run flutter_native_splash:create
+# flutter pub run flutter_native_splash:create --flavor flavorName
 
 flutter_native_splash:
   # This package generates native code to customize Flutter's default white native splash screen
